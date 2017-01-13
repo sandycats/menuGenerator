@@ -12,7 +12,7 @@ import {
 } from 'react-native';
 
 
-export default class ToDoListItem extends Component {
+export default class RecipeListItem extends Component {
   render() {
     var item = this.props.item;
   return (
@@ -22,7 +22,7 @@ export default class ToDoListItem extends Component {
           onLongPress={this.props.onLongPress}>
         <View style={styles.container}>
           <Text style={[styles.txt, item.complete && styles.completed]}>
-              {item.txt}
+              {item.title}
           </Text>
         </View>
         </TouchableHighlight>
@@ -32,4 +32,4 @@ export default class ToDoListItem extends Component {
 }
 }
 
-module.exports = ToDoListItem;
+module.exports = RecipeListItem;

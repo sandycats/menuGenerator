@@ -3,14 +3,14 @@
  */
 'use strict';
 import styles from '../styles/styles';
-import ToDoListItem from './ToDoListItem';
+import RecipeListItem from './RecipeListItem';
 
 import React, { Component } from 'react';
 import {
   ListView
 } from 'react-native';
 
-export default class ToDoList extends Component {
+export default class RecipeList extends Component {
 
     componentWillMount() {
         this.dataSource = new ListView.DataSource({
@@ -24,7 +24,7 @@ export default class ToDoList extends Component {
             <ListView
                 dataSource={dataSource}
                 renderRow={(rowData, sectionID, rowID) =>
-          <ToDoListItem item={rowData}
+          <RecipeListItem item={rowData}
           onPress={() => this.props.onPressItem(rowData, rowID)}
           onLongPress={() => this.props.onLongPressItem(rowData, rowID)} />
         }
@@ -35,4 +35,4 @@ export default class ToDoList extends Component {
 }
 
 
-module.exports = ToDoList;
+module.exports = RecipeList;

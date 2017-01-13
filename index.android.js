@@ -4,7 +4,7 @@
 'use strict';
 
 import styles from './application/styles/styles';
-import ToDoListContainer from './application/components/ToDoListContainer';
+import RecipeListContainer from './application/components/RecipeListContainer';
 
 import React, { Component } from 'react';
 import {
@@ -27,7 +27,7 @@ export default class menuGenerator extends Component {
   render() {
     return (
       <Navigator
-        initialRoute={{ title: 'ToDo List', component:ToDoListContainer, index: 0 }}
+        initialRoute={{ title: 'Recipe List', component:RecipeListContainer, index: 0 }}
         renderScene={this.renderScene}
       />
     );

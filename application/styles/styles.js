@@ -39,7 +39,7 @@ var styles = StyleSheet.create({
         borderRadius: 0,
     },
 
-    todo: {
+    Recipe: {
         marginTop: 100,
         flex: 1,
         padding: 10,

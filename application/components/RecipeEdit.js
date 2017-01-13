@@ -13,19 +13,19 @@ import {
 } from 'react-native';
 var Form = t.form.Form;
 
-var ToDo = t.struct({txt: t.Str, complete: t.Bool});
+var Recipe = t.struct({title: t.Str, complete: t.Bool});
 
 var options = {
     fields: {
-        txt: {
-            label: 'To-Do Item',
-            placeholder: 'enter a to do item here',
+        title: {
+            label: 'Recipe',
+            placeholder: 'enter a recipe item here',
             autoFocus: true
         }
     }
 };
 
-export default class ToDoEdit extends Component {
+export default class RecipeEdit extends Component {
     constructor() {
         super();
         this.onUpdate = this.onUpdate.bind(this);
@@ -40,10 +40,10 @@ export default class ToDoEdit extends Component {
 
     render() {
         return (
-            <View style={styles.todo}>
+            <View style={styles.Recipe}>
                 <Form
                     ref="form"
-                    type={ToDo}
+                    type={Recipe}
                     onChange={this._onChange}
                     options={options}
                     value={this.props.item}/>
@@ -59,4 +59,4 @@ export default class ToDoEdit extends Component {
 }
 
 
-module.exports = ToDoEdit;
+module.exports = RecipeEdit;

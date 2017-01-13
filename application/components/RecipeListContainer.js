@@ -3,8 +3,8 @@
  */
 'use strict';
 import styles from '../styles/styles';
-import ToDoList from './ToDoList';
-import ToDoEdit from './ToDoEdit';
+import RecipeList from './RecipeList';
+import RecipeEdit from './RecipeEdit';
 
 import React, { Component } from 'react';
 import {
@@ -17,14 +17,17 @@ import {
   Alert
 } from 'react-native';
 
-export default class ToDoContainer extends Component {
+var _recipes = [
+  {id: 1, complete: false, title: 'Каша', image: './pictures/sosiski-iz-indejki.jpg', ingridients: ['крупа', 'вода', 'сіль'], text: 'крупу покласти у воду, додати сіль, поставити на середній вогонь, варити до готовності'},
+  {id: 2, complete: true, title: 'Млинці', image: './pictures/sosiski-iz-indejki.jpg', ingridients: ['борошно', 'молоко', 'сіль','яйця', 'цукор'], text: 'змішати всі інгридієнти. сковорідкурозігріти і на неї викладати ложкою тісто'},
+  {id: 3, complete: true, title: 'омлет', image: './pictures/sosiski-iz-indejki.jpg', ingridients: ['борошно', 'молоко', 'сіль','яйця', 'цукор'], text: 'яйця взбити, додати сіль, молоко, трохи борошна і на сковорідку'},
+];
+
+export default class RecipeContainer extends Component {
     constructor() {
         super();
         this.state = {
-            items: [
-                {txt: 'Learn react native', complete: false},
-                {txt: 'Make a to-do app', complete: true}
-            ]
+            items: _recipes
         };
         this.alertMenu = this.alertMenu.bind(this);
         this.deleteItem = this.deleteItem.bind(this);
@@ -65,8 +68,8 @@ export default class ToDoContainer extends Component {
 
     openItem(rowData, rowID) {
         this.props.navigator.push({
-            name: rowData && rowData.txt || 'New Item',
-            component: ToDoEdit,
+            name: rowData && rowData.title || 'New Item',
+            component: RecipeEdit,
             passProps: {item: rowData, id: rowID, update: this.updateItem}
         });
     }
@@ -74,7 +77,7 @@ export default class ToDoContainer extends Component {
     render() {
         return (
             <View style={{flex:1}}>
-                <ToDoList
+                <RecipeList
                     items={this.state.items}
                     onPressItem={this.openItem}
                     onLongPressItem={this.alertMenu}/>
@@ -89,4 +92,4 @@ export default class ToDoContainer extends Component {
     }
 }
 
-module.exports = ToDoContainer;
+module.exports = RecipeContainer;
