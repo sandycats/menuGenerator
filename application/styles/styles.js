@@ -15,6 +15,11 @@ var styles = StyleSheet.create({
         backgroundColor: '#ffffff',
     },
 
+    rowContainer: {
+        flexDirection: 'row',
+        padding: 10
+      },
+
     buttonText: {
         fontSize: 18,
         color: 'white',
@@ -40,7 +45,6 @@ var styles = StyleSheet.create({
     },
 
     Recipe: {
-        marginTop: 100,
         flex: 1,
         padding: 10,
         backgroundColor: '#ffffff',
@@ -62,7 +66,13 @@ var styles = StyleSheet.create({
         height: 1,
         marginLeft: 0,
         marginRight: 0,
-    }
+    },
+
+    thumb: {
+    width: 80,
+    height: 80,
+    marginRight: 10
+  }
 
 });
 
