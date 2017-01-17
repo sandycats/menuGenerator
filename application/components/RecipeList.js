@@ -5,10 +5,8 @@
 import styles from '../styles/styles';
 import RecipeListItem from './RecipeListItem';
 
-import React, { Component } from 'react';
-import {
-  ListView
-} from 'react-native';
+import React, {Component} from 'react';
+import {ListView} from 'react-native';
 
 export default class RecipeList extends Component {
 
@@ -21,18 +19,10 @@ export default class RecipeList extends Component {
     render() {
         var dataSource = this.dataSource.cloneWithRows(this.props.items);
         return (
-            <ListView
-                dataSource={dataSource}
-                renderRow={(rowData, sectionID, rowID) =>
-          <RecipeListItem item={rowData}
-          onPress={() => this.props.onPressItem(rowData, rowID)}
-          onLongPress={() => this.props.onLongPressItem(rowData, rowID)} />
-        }
-                style={styles.listView}/>
+            <ListView dataSource={dataSource} renderRow={(rowData, sectionID, rowID) => <RecipeListItem item={rowData} onPress={() => this.props.onPressItem(rowData, rowID)} onLongPress={() => this.props.onLongPressItem(rowData, rowID)}/>} style={styles.listView}/>
         );
     }
 
 }
-
 
 module.exports = RecipeList;
