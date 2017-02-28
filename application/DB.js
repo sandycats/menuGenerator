@@ -2,10 +2,86 @@
  * @flow
  */
 'use strict';
-import RNDBModel from 'react-native-db-models';
+import Realm from 'realm';
+import React, {Component} from 'react';
 
-var DB = {
-    "recipes": new RNDBModel.create_db('recipes')
-}
+// const RecipesSchema = {
+//     name: 'Recipes',
+//     primaryKey: 'id',
+//     properties: {
+//         id: 'int', // primary key
+//         isBreakfast: 'bool',
+//         title: {
+//             type: 'string',
+//             indexed: true
+//         },
+//         image: {type: 'string', optional: true}
+//         ingridients: {type: 'string', optional: true}
+//         text: {type: 'string', optional: true}
+//     }
+// }
 
-module.exports = DB
+// Initialize a Realm with Recipe model update with new schemaVersion
+//  let realm = new Realm({schema: [RecipeSchema], schemaVersion: 3});
+
+//write elements in db
+// realm.write(() => {
+//     realm.create('Recipes', {
+//         id: 1,
+//         isBreakfast: false,
+//         title: 'Каша',
+//         image: './pictures/default.png',
+//         ingridients: 'крупа вода сіль',
+//         text: 'крупу  покласти у воду, додати сіль, поставити на середній вогонь, варити до готовності'
+//     });
+//     realm.create('Recipes', {
+//         id: 2,
+//         isBreakfast: false,
+//         title: 'Млинці',
+//         image: './pictures/default.png',
+//         ingridients: 'борошно молоко сіль яйця цукор',
+//         text: 'змішати всі інгридієнти. сковорідкурозігріти і на неї викладати ложкою тісто'
+//     });
+//     realm.create('Recipes', {
+//         id: 3,
+//         isBreakfast: false,
+//         title: 'омлет',
+//         image: './pictures/default.png',
+//         ingridients: 'борошно молоко сіль яйця цукор',
+//         text: 'яйця взбити, додати сіль, молоко, трохи борошна і на сковорідку'
+//     });
+// })
+
+// var _recipes = [
+//     {
+//         id: 1,
+//         complete: false,
+//         title: 'Каша',
+//         image: './pictures/default.png',
+//         ingridients: [
+//             'крупа', 'вода', 'сіль'
+//         ],
+//         text: 'крупу  покласти у воду, додати сіль, поставити на середній вогонь, варити до готовності'
+//     }, {
+//         id: 2,
+//         complete: true,
+//         title: 'Млинці',
+//         image: './pictures/default.png',
+//         ingridients: [
+//             'борошно', 'молоко', 'сіль', 'яйця', 'цукор'
+//         ],
+//         text: 'змішати всі інгридієнти. сковорідкурозігріти і на неї викладати ложкою тісто'
+//     }, {
+//         id: 3,
+//         complete: true,
+//         title: 'омлет',
+//         image: './pictures/default.png',
+//         ingridients: [
+//             'борошно', 'молоко', 'сіль', 'яйця', 'цукор'
+//         ],
+//         text: 'яйця взбити, додати сіль, молоко, трохи борошна і на сковорідку'
+//     }
+// ];
+
+//adb reverse tcp:8081 tcp:8081
+//react - native start

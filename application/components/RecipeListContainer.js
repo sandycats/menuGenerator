@@ -6,7 +6,8 @@ import styles from '../styles/styles';
 import RecipeList from './RecipeList';
 import RecipeEdit from './RecipeEdit';
 
-import Realm from 'realm';
+//import realm from '../DB.js';
+
 import React, {Component} from 'react';
 import {
     AppRegistry,
@@ -18,65 +19,40 @@ import {
     Alert
 } from 'react-native';
 
-var _recipes = [
-    {
-        id: 1,
-        complete: false,
-        title: 'Каша',
-        image: './pictures/default.png',
-        ingridients: [
-            'крупа', 'вода', 'сіль'
-        ],
-        text: 'крупу  покласти у воду, додати сіль, поставити на середній вогонь, варити до готовності'
-    }, {
-        id: 2,
-        complete: true,
-        title: 'Млинці',
-        image: './pictures/default.png',
-        ingridients: [
-            'борошно', 'молоко', 'сіль', 'яйця', 'цукор'
-        ],
-        text: 'змішати всі інгридієнти. сковорідкурозігріти і на неї викладати ложкою тісто'
-    }, {
-        id: 3,
-        complete: true,
-        title: 'омлет',
-        image: './pictures/default.png',
-        ingridients: [
-            'борошно', 'молоко', 'сіль', 'яйця', 'цукор'
-        ],
-        text: 'яйця взбити, додати сіль, молоко, трохи борошна і на сковорідку'
-    }
-];
+import Map from 'array-map';
+
+import Realm from 'realm';
+
+// you can access and set all properties defined in your model
+// console.log('Recipe is here ' + recipe.title + ' ' + recipe.text);
+//});
 
 export default class RecipeContainer extends Component {
+
     constructor() {
         super();
 
-        this.state = {
-            items: _recipes
-        };
-        let realm = new Realm({
-            schema: [
-                {
-                    name: 'Dog',
-                    properties: {
-                        name: 'string'
-                    }
-                }
-            ]
-        });
+        let realm = new Realm();
+        let recipesFromDb = realm.objects('Recipes');
 
-        realm.write(() => {
-            realm.create('Dog', {name: 'Rex'});
-        });
-        console.log(realm.objects('Dog').length);
+        let recipes = Map(recipesFromDb, function(key) {
+            return key;
+        })
+
+        this.state = {
+            items: recipes,
+            realm: realm
+        };
 
         this.alertMenu = this.alertMenu.bind(this);
         this.deleteItem = this.deleteItem.bind(this);
         this.updateItem = this.updateItem.bind(this);
         this.openItem = this.openItem.bind(this);
 
+    }
+
+    componentWillUnmount() {
+        this.state.realm.close();
     }
 
     alertMenu(rowData, rowID) {
@@ -95,7 +71,7 @@ export default class RecipeContainer extends Component {
 
     deleteItem(index) {
         var items = this.state.items;
-        items.splice(index, 1);
+        items.splice(indemx, 1);
         this.setState({items: items})
     }
 
@@ -103,14 +79,29 @@ export default class RecipeContainer extends Component {
         var items = this.state.items;
         if (index) {
             items[index] = item;
+            this.state.realm.write(() => {
+                this.state.realm.create('Recipes', item, true);
+            });
+
         } else {
-            items.push(item)
+            items.push(item);
+            this.state.realm.write(() => {
+                this.state.realm.create('Recipes', item);
+            });
         }
         this.setState({items: items});
         this.props.navigator.pop();
     }
 
     openItem(rowData, rowID) {
+        if (!rowID) {
+            rowData = {
+                id: Date.now(),
+                image: ' ',
+                text: ' ',
+                ingridients: ' '
+            }
+        }
         this.props.navigator.push({
             name: rowData && rowData.title || 'New Item',
             component: RecipeEdit,

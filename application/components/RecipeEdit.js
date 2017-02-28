@@ -9,11 +9,18 @@ import React, {Component} from 'react';
 import {Text, View, Image, TouchableHighlight} from 'react-native';
 var Form = t.form.Form;
 
+/*
+I am using react-native-camera for clicking pictures. I get a file path like : "file:///storage/emulated/0/Pictures/IMG_20161228_021132.jpg" in the data from the Camera which I am storing in the state. I am able to use this as the source for displaying the Image using the Image component "Image source={{uri: this.props.note.imagePath.path}}" and it is displaying properly.
+*/
+
 var Recipe = t.struct({
+    id: t.maybe(t.Number),
+    isBreakfast: t.maybe(t.Bool),
     title: t.Str,
-    ingridients: t.list(t.Str),
-    text: t.Str,
-    isBreakfast: t.Bool
+    image: t.maybe(t.Str),
+    text: t.maybe(t.Str),
+    ingridients: t.maybe(t.Str)
+    // ingridients: t.list(t.Str)
 });
 
 var listTransformer = {
@@ -31,22 +38,28 @@ var listTransformer = {
 
 var options = {
     fields: {
+        id: {
+            hidden: true
+        },
+        image: {
+            hidden: true
+        },
         title: {
             label: 'Назва',
             placeholder: 'enter a recipe item here'
         },
         ingridients: {
             label: 'Інгридієнти',
-            factory: t.form.Textbox,
-            transformer: listTransformer,
+            // factory: t.form.Textbox,
+            // transformer: listTransformer,
             help: 'Інгридієнти розділені пробілами'
         },
         text: {
             label: 'Рецепт',
             multiline: true,
-            onChange: (event) => {
-                this.setState({height: event.nativeEvent.contentSize.height});
-            },
+            // onChange: (event) => {
+            //     this.setState({height: event.nativeEvent.contentSize.height});
+            // },
             stylesheet: {
                 ...Form.stylesheet,
                 textbox: {
