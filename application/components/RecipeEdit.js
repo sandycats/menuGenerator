@@ -15,11 +15,12 @@ I am using react-native-camera for clicking pictures. I get a file path like : "
 
 var Recipe = t.struct({
     id: t.maybe(t.Number),
-    isBreakfast: t.maybe(t.Bool),
-    title: t.Str,
     image: t.maybe(t.Str),
+    title: t.Str,
+    ingridients: t.maybe(t.Str),
     text: t.maybe(t.Str),
-    ingridients: t.maybe(t.Str)
+    isBreakfast: t.maybe(t.Bool)
+
     // ingridients: t.list(t.Str)
 });
 

@@ -23,10 +23,6 @@ import Map from 'array-map';
 
 import Realm from 'realm';
 
-// you can access and set all properties defined in your model
-// console.log('Recipe is here ' + recipe.title + ' ' + recipe.text);
-//});
-
 export default class RecipeContainer extends Component {
 
     constructor() {
@@ -71,19 +67,25 @@ export default class RecipeContainer extends Component {
 
     deleteItem(index) {
         var items = this.state.items;
-        items.splice(indemx, 1);
+        this.state.realm.write(() => {
+            let recipeToDelete = this.state.realm.objects('Recipes').filtered('id = ' + items[index].id);
+            this.state.realm.delete(recipeToDelete);
+        })
+        items.splice(index, 1);
         this.setState({items: items})
     }
 
     updateItem(item, index) {
         var items = this.state.items;
         if (index) {
+            // update existing recipe
             items[index] = item;
             this.state.realm.write(() => {
                 this.state.realm.create('Recipes', item, true);
             });
 
         } else {
+            // create new recipe
             items.push(item);
             this.state.realm.write(() => {
                 this.state.realm.create('Recipes', item);
@@ -95,6 +97,7 @@ export default class RecipeContainer extends Component {
 
     openItem(rowData, rowID) {
         if (!rowID) {
+            // for new recipe create autoID, because user will never be able to change this field
             rowData = {
                 id: Date.now(),
                 image: ' ',
@@ -115,11 +118,13 @@ export default class RecipeContainer extends Component {
 
     render() {
         return (
+
             <View style={{
                 flex: 1
             }}>
+
                 <RecipeList items={this.state.items} onPressItem={this.openItem} onLongPressItem={this.alertMenu}/>
-                <TouchableHighlight style={[styles.button, styles.newButton]} underlayColor='#99d9f4' onPress={this.openItem}>
+                <TouchableHighlight style={styles.newButton} underlayColor='#99d9f4' onPress={this.openItem}>
                     <Text style={styles.buttonText}>+</Text>
                 </TouchableHighlight>
             </View>

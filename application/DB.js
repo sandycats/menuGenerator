@@ -52,36 +52,6 @@ import React, {Component} from 'react';
 //     });
 // })
 
-// var _recipes = [
-//     {
-//         id: 1,
-//         complete: false,
-//         title: 'Каша',
-//         image: './pictures/default.png',
-//         ingridients: [
-//             'крупа', 'вода', 'сіль'
-//         ],
-//         text: 'крупу  покласти у воду, додати сіль, поставити на середній вогонь, варити до готовності'
-//     }, {
-//         id: 2,
-//         complete: true,
-//         title: 'Млинці',
-//         image: './pictures/default.png',
-//         ingridients: [
-//             'борошно', 'молоко', 'сіль', 'яйця', 'цукор'
-//         ],
-//         text: 'змішати всі інгридієнти. сковорідкурозігріти і на неї викладати ложкою тісто'
-//     }, {
-//         id: 3,
-//         complete: true,
-//         title: 'омлет',
-//         image: './pictures/default.png',
-//         ingridients: [
-//             'борошно', 'молоко', 'сіль', 'яйця', 'цукор'
-//         ],
-//         text: 'яйця взбити, додати сіль, молоко, трохи борошна і на сковорідку'
-//     }
-// ];
-
 //adb reverse tcp:8081 tcp:8081
 //react - native start
+//adb logcat *:S ReactNative:V ReactNativeJS:V

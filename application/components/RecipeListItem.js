@@ -17,11 +17,14 @@ export default class RecipeListItem extends Component {
                         <View style={styles.rowContainer}>
                             <Image source={require('../../pictures/default.png')} style={styles.thumb}/>
 
-                            <View>
+                            <View style={styles.container}>
                                 <Text style={[
-                                    styles.txt, item.complete && styles.completed
+                                    styles.title, item.complete && styles.completed
                                 ]}>
                                     {item.title}
+                                </Text>
+                                <Text style={styles.ingridients}>
+                                    {item.ingridients}
                                 </Text>
                             </View>
                         </View>

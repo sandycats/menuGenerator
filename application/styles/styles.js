@@ -19,7 +19,8 @@ var styles = StyleSheet.create({
 
     rowContainer: {
         flexDirection: 'row',
-        padding: 10
+        padding: 10,
+        backgroundColor: '#ffffff'
     },
 
     buttonText: {
@@ -42,8 +43,16 @@ var styles = StyleSheet.create({
     },
 
     newButton: {
-        marginBottom: 0,
-        borderRadius: 0
+        // marginBottom: 0,
+        position: 'absolute',
+        right: 4,
+        bottom: 4,
+        borderRadius: 28,
+        height: 48,
+        width: 48,
+        backgroundColor: '#48BBEC',
+        // alignSelf: 'flex-end',
+        justifyContent: 'center'
     },
 
     Recipe: {
@@ -52,12 +61,12 @@ var styles = StyleSheet.create({
         backgroundColor: '#ffffff'
     },
 
-    txt: {
+    title: {
         fontSize: 24,
-        marginLeft: 5,
-        marginTop: 2,
         color: '#222222'
     },
+
+    ingridients: {},
 
     completed: {
         color: '#cccccc'
