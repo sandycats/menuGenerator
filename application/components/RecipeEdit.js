@@ -97,7 +97,7 @@ export default class RecipeEdit extends Component {
 
     render() {
         return (
-            <View style={styles.Recipe}>
+            <View style={[styles.scene, styles.Recipe]}>
                 <Image source={require('../../pictures/default.png')} style={styles.thumb}/>
 
                 <Form ref="form" type={Recipe} onChange={this._onChange} options={options} value={this.props.item}/>

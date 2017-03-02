@@ -4,8 +4,39 @@ var {StyleSheet} = React;
 
 var styles = StyleSheet.create({
 
-    navigator: {
-        flex: 1
+    scene: {
+        flex: 1,
+        paddingTop: 30,
+        backgroundColor: '#ffffff'
+    },
+    navBar: {
+        height: 36,
+        backgroundColor: '#48BBEC',
+        // marginTop: 8
+    },
+    navBarText: {
+        fontSize: 18,
+        // textAlignVertical: 'center',
+        // bottom: 1
+        color: '#ffffff',
+        marginTop: 3
+    },
+    navBarTitleText: {
+        // color: '#373E4D',
+        fontSize: 20,
+        fontWeight: '500',
+        // bottom: 1,
+        marginLeft: 20,
+        marginTop: 22
+    },
+    navBarLeftButton: {
+        paddingLeft: 10
+    },
+    navBarRightButton: {
+        // paddingRight: 10
+    },
+    navBarButtonText: {
+        // color: '#5890FF'
     },
 
     container: {
@@ -19,7 +50,7 @@ var styles = StyleSheet.create({
 
     rowContainer: {
         flexDirection: 'row',
-        padding: 10,
+        // padding: 10,
         backgroundColor: '#ffffff'
     },
 

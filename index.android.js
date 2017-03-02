@@ -10,11 +10,56 @@ import React, {Component} from 'react';
 import {
     AppRegistry,
     StyleSheet,
+    TouchableHighlight,
+    TouchableOpacity,
     Text,
     View,
     BackAndroid,
     Navigator
 } from 'react-native';
+
+var NavigationBarRouteMapper = {
+
+    LeftButton: function(route, navigator, index, navState) {
+        if (index === 0) {
+            // return null;
+            return (
+                <Text style={[styles.navBarText, styles.navBarButtonText, styles.navBarLeftButton]}>
+                    Menu
+                </Text>
+
+            );
+        }
+
+        var previousRoute = navState.routeStack[index - 1];
+        return (
+            <TouchableOpacity onPress={() => navigator.pop()} style={styles.navBarLeftButton}>
+                <Text style={[styles.navBarText, styles.navBarButtonText]}>
+                    Back
+                </Text>
+            </TouchableOpacity>
+        );
+    },
+
+    RightButton: function(route, navigator, index, navState) {
+        return //(
+        // <TouchableOpacity onPress={() => navigator.push(newRandomRoute())} style={styles.navBarRightButton}>
+        //     <Text style={[styles.navBarText, styles.navBarButtonText]}>
+        //         Next
+        //     </Text>
+        // </TouchableOpacity>
+        //);
+    },
+
+    Title: function(route, navigator, index, navState) {
+        return (
+            <Text style={[styles.navBarText, styles.navBarTitleText]}>
+                {route.title}
+            </Text>
+
+        );
+    }
+};
 
 export default class menuGenerator extends Component {
 
@@ -37,15 +82,22 @@ export default class menuGenerator extends Component {
 
     renderScene(route, navigator) {
         this.navigator = navigator;
-        return <route.component title={route.title} navigator={navigator} {...route.passProps}/>
+        return (<route.component title={route.title} navigator={navigator} {...route.passProps}/>)
     }
 
     render() {
-        return (<Navigator initialRoute={{
-            title: 'Recipe List',
-            component: RecipeListContainer,
-            index: 0
-        }} renderScene={this.renderScene.bind(this)}/>);
+        return (
+            <Navigator initialRoute={{
+                title: 'Recipe List',
+                component: RecipeListContainer,
+                index: 0
+            }} renderScene={this.renderScene.bind(this)} navigationBar={< Navigator.NavigationBar routeMapper = {
+                NavigationBarRouteMapper
+            }
+            style = {
+                styles.navBar
+            } />}/>
+        );
     }
 }
 

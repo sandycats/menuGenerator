@@ -106,7 +106,7 @@ export default class RecipeContainer extends Component {
             }
         }
         this.props.navigator.push({
-            name: rowData && rowData.title || 'New Item',
+            title: rowData && rowData.title || 'New Item',
             component: RecipeEdit,
             passProps: {
                 item: rowData,
@@ -119,9 +119,7 @@ export default class RecipeContainer extends Component {
     render() {
         return (
 
-            <View style={{
-                flex: 1
-            }}>
+            <View style={styles.scene}>
 
                 <RecipeList items={this.state.items} onPressItem={this.openItem} onLongPressItem={this.alertMenu}/>
                 <TouchableHighlight style={styles.newButton} underlayColor='#99d9f4' onPress={this.openItem}>
